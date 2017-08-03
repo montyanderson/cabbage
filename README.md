@@ -2,6 +2,8 @@
 
 Self-hosted, auto-deployment service for Github, built at [Tedra](https://github.com/tedra).
 
+[![dependencies Status](https://david-dm.org/montyanderson/cabbage/status.svg)](https://david-dm.org/montyanderson/cabbage)
+
 ## Usage
 
 * Create a `Server`
