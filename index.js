@@ -22,4 +22,6 @@ app.use(require("./routes/project/edit"));
 app.use(require("./routes/project/list"));
 app.use(require("./routes/project/delete"));
 
+app.use(require("./routes/push"));
+
 app.listen(8080);
