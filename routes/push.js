@@ -18,11 +18,13 @@ module.exports = _.post("/push", async ctx => {
 	const directory = `/tmp/${crypto.randomBytes(32).toString("hex")}`;
 	await mkdir(directory);
 
-	await execa("git", [ "clone", `https://github.com/${project.repo}`, directory ]);
+	const git = await execa("git", [ "clone", `https://github.com/${project.repo}`, directory ]);
 
 	const servers = await Promise.all(project.servers.map(id => Server.find(id)));
 
-	await Promise.all([servers[0]].map(async server => {
+	const scp = [];
+
+	await Promise.all([servers[0]].map(async (server, i) => {
 
 		const args = [
 			"-p",
@@ -33,9 +35,17 @@ module.exports = _.post("/push", async ctx => {
 			`${server.username}@${server.address}:${project.directory}`
 		];
 
-		await execa("sshpass", args);
+		scp[i] = await execa("sshpass", args);
 	}));
 
-	ctx.body = {};
-
+	ctx.body = {
+		git: {
+			stdout: git.stdout,
+			stderr: git.stderr
+		},
+		scp: scp.map(s => ({
+			stdout: s.stdout,
+			stderr: s.stderr
+		}))
+	};
 });
