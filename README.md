@@ -1,5 +1,14 @@
 # cabbage
 
+Self-hosted, auto-deployment service for Github, built at [Tedra](https://github.com/tedra).
+
+## Prerequisites
+
+* Node v8+
+* `git`
+* `scp`
+* `sshpass`
+
 ## Models
 
 ### `Server`

@@ -20,23 +20,20 @@ module.exports = _.post("/push", async ctx => {
 
 	await execa("git", [ "clone", `https://github.com/${project.repo}`, directory ]);
 
-	const serverIds = typeof project.servers == "array" ? project.servers : [ project.servers ];
+	const servers = await Promise.all(project.servers.map(id => Server.find(id)));
 
-	const servers = await Promise.all(serverIds.map(id => Server.find(id)));
-
-	await Promise.all(servers.map(async server => {
+	await Promise.all([servers[0]].map(async server => {
 
 		const args = [
-			"sshpass",
 			"-p",
 			server.password,
+			"scp",
 			"-r",
 			...((await readdir(directory)).filter(f => f !== ".git").map(f => `${directory}/${f}`)),
 			`${server.username}@${server.address}:${project.directory}`
 		];
 
-		console.log(await execa("sshpass", args));
-
+		await execa("sshpass", args);
 	}));
 
 	ctx.body = {};
