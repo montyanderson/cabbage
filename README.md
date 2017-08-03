@@ -25,8 +25,6 @@ with the body
 returns
 
 ``` json
-{
-	...,
 	"id": 1
 }
 ```
@@ -51,8 +49,6 @@ with the body
 which returns
 
 ``` json
-{
-	...,
 	"id": 1
 }
 ```
