@@ -2,6 +2,65 @@
 
 Self-hosted, auto-deployment service for Github, built at [Tedra](https://github.com/tedra).
 
+## Usage
+
+* Create a `Server`
+
+```
+curl -X POST http://cabbage/server/create
+```
+
+with the body
+
+``` json
+{
+	"name": "Digital Ocean 1",
+	"address": "127.0.0.1",
+	"port": 22,
+	"username": "www",
+	"password": "********"
+}
+```
+
+returns
+
+``` json
+{
+	...,
+	"id": 1
+}
+```
+
+* Create a `Project`
+
+```
+curl -X POST http://cabbage/server/create
+```
+
+with the body
+
+``` json
+{
+	"name": "My Website",
+	"repo": "montyanderson/website",
+	"servers": [ 1 ],
+	"directory": "/var/www/website"
+}
+```
+
+which returns
+
+``` json
+{
+	...,
+	"id": 1
+}
+```
+
+* Add a Webhook to your repository
+
+![](http://i.imgur.com/d91RDQm.png)
+
 ## Prerequisites
 
 * Node v8+
