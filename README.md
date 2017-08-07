@@ -166,4 +166,4 @@ $ cat > .auth.json << }
 $ node index
 ```
 
-* [Get started](#Usage)
+* [Get started](#usage)
