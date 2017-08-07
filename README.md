@@ -60,13 +60,6 @@ which returns
 
 ![](http://i.imgur.com/i4dyF9H.png)
 
-## Prerequisites
-
-* Node v8+
-* `git`
-* `scp`
-* `sshpass`
-
 ## Models
 
 ### `Server`
@@ -103,3 +96,73 @@ which returns
 * `POST` /project
 * `GET` /project?id=${id}
 * `GET` /project/list
+
+## Install
+
+### Prerequisites
+
+* `node` (and `npm`) >= 8
+* `redis` >= 3
+* `ssh`
+* `scp`
+* `sshpass`
+
+* Install `ssh`, `scp`, and `sshpass`
+
+```
+$ sudo apt-get install openssh-server sshpass
+```
+
+* Install `node` (using `nvm`)
+
+```
+$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+$ su $USER
+$ nvm install latest
+```
+
+* Install [`redis`](https://redis.io/download) as per [instructions](https://redis.io/download#installation).
+
+Run the script to create a service.
+
+```
+$ sudo ./utils/install.server.sh
+```
+
+* Clone the `cabbage` repository
+
+```
+$ git clone https://github.com/montyanderson/cabbage
+```
+
+* Install dependencies
+
+```
+$ cd cabbage
+$ npm install
+```
+
+* Generate a random 'push secret' for use with webhooks
+
+```
+$ cat /dev/urandom | head -c 32 | base64 > .push_secret
+```
+
+* Generate a user account for viewing/creating/changing projects and servers
+
+```
+$ cat > .auth.json << }
+{
+	"name": "monty",
+	"pass": "a"
+}
+
+```
+
+* Start the node server
+
+```
+$ node index
+```
+
+* [Get started](#Usage)
