@@ -28,6 +28,7 @@ app.use(require("./routes/project/find"));
 app.use(require("./routes/project/edit"));
 app.use(require("./routes/project/list"));
 app.use(require("./routes/project/delete"));
+app.use(require("./routes/project/deploy"));
 
 app.use(require("./routes/push"));
 
