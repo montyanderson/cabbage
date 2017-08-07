@@ -30,6 +30,8 @@ module.exports = _.post("/push", async ctx => {
 			"-p",
 			server.password,
 			"scp",
+			"-P",
+			server.port,
 			"-r",
 			...((await readdir(directory)).filter(f => f !== ".git").map(f => `${directory}/${f}`)),
 			`${server.username}@${server.address}:${project.directory}`

@@ -5,6 +5,7 @@ Self-hosted, auto-deployment service for Github, built at [Tedra](https://github
 [![dependencies Status](https://david-dm.org/montyanderson/cabbage/status.svg)](https://david-dm.org/montyanderson/cabbage)
 
 ## Usage
+`cabbage` implements a JSON REST interface, for a graphical web interface see [cabbage-ui](https://github.com/montyanderson/cabbage-ui).
 
 * Create a `Server`
 
