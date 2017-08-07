@@ -58,7 +58,7 @@ which returns
 
 * Add a Webhook to your repository
 
-![](http://i.imgur.com/d91RDQm.png)
+![](http://i.imgur.com/i4dyF9H.png)
 
 ## Prerequisites
 
