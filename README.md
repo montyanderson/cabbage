@@ -56,7 +56,7 @@ which returns
 }
 ```
 
-* Add a Webhook to your repository
+* Add a webhook to your repository
 
 ![](http://i.imgur.com/i4dyF9H.png)
 
