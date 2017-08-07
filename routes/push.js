@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const util = require("util");
 const _ = require("koa-route");
 const execa = require("execa");
+const sanitize = require("sanitize-filename");
 const Project = require("../lib/Project");
 const Server = require("../lib/Server");
 
@@ -47,7 +48,7 @@ module.exports = _.post("/push", async ctx => {
 			"-p",
 			server.port,
 			`${server.username}@${server.address}`,
-			`rm -rf ${project.directory}/*`
+			`rm -rf "${sanitize(project.directory)}/*"`
 		]);
 
 		await execa("sshpass", [
@@ -57,8 +58,12 @@ module.exports = _.post("/push", async ctx => {
 			"-p",
 			server.port,
 			`${server.username}@${server.address}`,
-			`mkdir -p ${project.directory}`
+			`mkdir -p "${sanitize(project.directory)}"`
 		]);
+
+		const files = (await fs.readdir(directory))
+			.filter(f => f !== ".git")
+			.map(f => `${directory}/${f}`);
 
 		scp[i] = await execa("sshpass", [
 			"-p",
@@ -67,8 +72,8 @@ module.exports = _.post("/push", async ctx => {
 			"-P",
 			server.port,
 			"-r",
-			...((await fs.readdir(directory)).filter(f => f !== ".git").map(f => `${directory}/${f}`)),
-			`${server.username}@${server.address}:${project.directory}`
+			...files,
+			`${server.username}@${server.address}:${sanitize(project.directory)}`
 		]);
 	}));
 
