@@ -3,7 +3,6 @@ const crypto = require("crypto");
 const util = require("util");
 const _ = require("koa-route");
 const execa = require("execa");
-const sanitize = require("sanitize-filename");
 const Project = require("../lib/Project");
 const Server = require("../lib/Server");
 
@@ -39,6 +38,9 @@ module.exports = _.post("/push", async ctx => {
 
 	const scp = [];
 
+	// sanitize
+	const projectDirectory = project.directory.replace(new RegExp(`"`, "g"), `\\"`);
+
 	await Promise.all(servers.map(async (server, i) => {
 
 		await execa("sshpass", [
@@ -48,7 +50,7 @@ module.exports = _.post("/push", async ctx => {
 			"-p",
 			server.port,
 			`${server.username}@${server.address}`,
-			`rm -rf "${sanitize(project.directory)}/*"`
+			`rm -rf "${projectDirectory}"/*`
 		]);
 
 		await execa("sshpass", [
@@ -58,7 +60,7 @@ module.exports = _.post("/push", async ctx => {
 			"-p",
 			server.port,
 			`${server.username}@${server.address}`,
-			`mkdir -p "${sanitize(project.directory)}"`
+			`mkdir -p "${projectDirectory}"`
 		]);
 
 		const files = (await fs.readdir(directory))
@@ -73,7 +75,7 @@ module.exports = _.post("/push", async ctx => {
 			server.port,
 			"-r",
 			...files,
-			`${server.username}@${server.address}:${sanitize(project.directory)}`
+			`${server.username}@${server.address}:${projectDirectory}`
 		]);
 	}));
 
