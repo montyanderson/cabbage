@@ -26,7 +26,17 @@ module.exports = _.post("/push", async ctx => {
 
 	await Promise.all([servers[0]].map(async (server, i) => {
 
-		const args = [
+		await execa("sshpass", [
+			"-p",
+			server.password,
+			"ssh",
+			"-p",
+			server.port,
+			`${server.username}@${server.address}`,
+			`mkdir -p ${project.directory}`
+		]);
+
+		scp[i] = await execa("sshpass", [
 			"-p",
 			server.password,
 			"scp",
@@ -35,9 +45,7 @@ module.exports = _.post("/push", async ctx => {
 			"-r",
 			...((await readdir(directory)).filter(f => f !== ".git").map(f => `${directory}/${f}`)),
 			`${server.username}@${server.address}:${project.directory}`
-		];
-
-		scp[i] = await execa("sshpass", args);
+		]);
 	}));
 
 	ctx.body = {
