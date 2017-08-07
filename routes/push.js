@@ -38,7 +38,17 @@ module.exports = _.post("/push", async ctx => {
 
 	const scp = [];
 
-	await Promise.all([servers[0]].map(async (server, i) => {
+	await Promise.all(servers.map(async (server, i) => {
+
+		await execa("sshpass", [
+			"-p",
+			server.password,
+			"ssh",
+			"-p",
+			server.port,
+			`${server.username}@${server.address}`,
+			`rm -rf ${project.directory}/*`
+		]);
 
 		await execa("sshpass", [
 			"-p",
