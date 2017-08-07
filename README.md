@@ -81,10 +81,10 @@ which returns
 
 #### Endpoints
 
-* `POST` /server/create
-* `GET` /server/delete
-* `POST` /server/edit
-* `GET` /server/find
+* `PUT` /server
+* `DELETE` /server?id=${id}
+* `POST` /server
+* `GET` /server?id=${id}
 * `GET` /server/list
 
 ### `Project`
@@ -98,8 +98,8 @@ which returns
 
 #### Endpoints
 
-* `POST` /project/create
-* `GET` /project/delete
-* `POST` /project/edit
-* `GET` /project/find
+* `PUT` /project
+* `DELETE` /project?id=${id}
+* `POST` /project
+* `GET` /project?id=${id}
 * `GET` /project/list
