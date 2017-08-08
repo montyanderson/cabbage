@@ -3,10 +3,10 @@ const crypto = require("crypto");
 const fs = require("mz/fs");
 const Project = require("../lib/Project");
 
-const secret = fs.readFileSync(__dirname + "/../.push_secret", "utf8").trim();
-
 module.exports = _.post("/push", async ctx => {
-	const hmac = crypto.createHmac("sha1", secret);
+	const project = await Project.findByRepo(ctx.request.body.repository.full_name);
+
+	const hmac = crypto.createHmac("sha1", project.pushSecret);
 	hmac.update(ctx.request.rawBody);
 
 	if(`sha1=${hmac.digest("hex")}` !== ctx.request.headers["x-hub-signature"]) {
@@ -14,8 +14,6 @@ module.exports = _.post("/push", async ctx => {
 
 		return;
 	}
-
-	const project = await Project.findByRepo(ctx.request.body.repository.full_name);
 
 	if(project.active == true) {
 		ctx.body = await project.deploy();
