@@ -32,4 +32,4 @@ app.use(require("./routes/project/deploy"));
 
 app.use(require("./routes/push"));
 
-app.listen(8080);
+app.listen(8080, "127.0.0.1");
