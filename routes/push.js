@@ -8,6 +8,6 @@ module.exports = _.post("/push", async ctx => {
 	const project = await Project.findByRepo(ctx.request.body.repository.full_name);
 
 	if(project.active == true) {
-		await project.deploy();
+		ctx.body = await project.deploy();
 	}
 });
