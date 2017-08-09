@@ -16,7 +16,7 @@ module.exports = _.post("/push", async ctx => {
 	}
 
 	if(project.active == true) {
-		ctx.body = await project.deploy();
+		ctx.body = await project.deploy(ctx.request.body.head_commit);
 	}
 
 	ctx.body = "Project not active!";
