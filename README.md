@@ -18,6 +18,7 @@ At it's core, `cabbage` has two discrete, manually-built models, in the form of 
 
 * `String` name
 * `String` address
+* `Number` port
 * `String` username
 * `String` password
 * `Number` id
