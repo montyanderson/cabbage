@@ -14,9 +14,24 @@ At it's core, `cabbage` has two discrete, manually-built models, in the form of 
 
 #### `Server` ([lib/Server.js](lib/Server.js))
 
+##### Schema
+
+* `String` name
+* `String` address
+* `String` username
+* `String` password
+* `Number` id
+
 #### `Project` ([lib/Project.js](lib/Project.js))
 
-### Controllers
+##### Schema
+
+* `String` name
+* `String` repo
+* `Array[Number]` servers
+* `Number` id
+
+### Controllers / Endpoints
 
 ## Usage
 `cabbage` implements a JSON REST interface, for a graphical web interface see [cabbage-ui](https://github.com/montyanderson/cabbage-ui).
@@ -73,43 +88,6 @@ which returns
 * Add a webhook to your repository
 
 ![](http://i.imgur.com/i4dyF9H.png)
-
-## Models
-
-### `Server`
-
-#### Schema
-
-* `String` name
-* `String` address
-* `String` username
-* `String` password
-* `Number` id
-
-#### Endpoints
-
-* `PUT` /server
-* `DELETE` /server?id=${id}
-* `POST` /server
-* `GET` /server?id=${id}
-* `GET` /server/list
-
-### `Project`
-
-#### Schema
-
-* `String` name
-* `String` repo
-* `Array[Number]` servers
-* `Number` id
-
-#### Endpoints
-
-* `PUT` /project
-* `DELETE` /project?id=${id}
-* `POST` /project
-* `GET` /project?id=${id}
-* `GET` /project/list
 
 ## Install
 
