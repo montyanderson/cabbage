@@ -4,6 +4,20 @@ Self-hosted, auto-deployment service for Github, built at [Tedra](https://github
 
 [![dependencies Status](https://david-dm.org/montyanderson/cabbage/status.svg)](https://david-dm.org/montyanderson/cabbage)
 
+## Architecture
+
+`cabbage` is a is a web service providing a JSON REST API, built with [Koa](https://github.com/koajs/koa) and [ioredis](https://github.com/luin/ioredis), using [Redis](https://redis.io/) as a data store.
+
+### Models
+
+At it's core, `cabbage` has two discrete, manually-built models, in the form of ES6 classes, which handle all data mutation. They abstract calls to the data store and provide high-level methods.
+
+#### `Server` ([lib/Server.js](lib/Server.js))
+
+#### `Project` ([lib/Project.js](lib/Project.js))
+
+### Controllers
+
 ## Usage
 `cabbage` implements a JSON REST interface, for a graphical web interface see [cabbage-ui](https://github.com/montyanderson/cabbage-ui).
 
