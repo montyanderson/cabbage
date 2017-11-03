@@ -30,6 +30,9 @@ app.use(require("./routes/project/list"));
 app.use(require("./routes/project/delete"));
 app.use(require("./routes/project/deploy"));
 
+app.use(require("./routes/log/top.js"));
+app.use(require("./routes/log/find.js"));
+
 app.use(require("./routes/push"));
 
 app.listen(8080, "127.0.0.1");
