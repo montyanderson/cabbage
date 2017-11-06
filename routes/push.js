@@ -11,7 +11,6 @@ module.exports = _.post("/push", async ctx => {
 
 	if(`sha1=${hmac.digest("hex")}` !== ctx.request.headers["x-hub-signature"]) {
 		ctx.response.status = 401;
-
 		return;
 	}
 
