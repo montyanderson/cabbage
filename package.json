@@ -29,6 +29,7 @@
     "koa-route": "^3.2.0",
     "minimatch": "^3.0.4",
     "mz": "^2.6.0",
+    "postmark": "^1.4.1",
     "sanitize-filename": "^1.6.1",
     "yup": "^0.21.3"
   }
