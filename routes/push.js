@@ -14,8 +14,12 @@ module.exports = _.post("/push", async ctx => {
 		return;
 	}
 
+	const added = [].concat(...ctx.request.body.commits.map(c => c.added));
+	const modified = [].concat(...ctx.request.body.commits.map(c => c.modified));
+	const removed = [].concat(...ctx.request.body.commits.map(c => c.removed));
+
 	if(project.active == true) {
-		ctx.body = await project.deploy(ctx.request.body.head_commit);
+		ctx.body = await project.deploy({ added, modified, removed });
 		return;
 	}
 
