@@ -23,7 +23,7 @@
     "joi": "^10.6.0",
     "koa": "^2.3.0",
     "koa-basic-auth": "^2.0.0",
-    "koa-bodyparser": "^4.2.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-json": "^2.0.2",
     "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
