@@ -21,7 +21,7 @@
     "execa": "^1.0.0",
     "ioredis": "^3.1.2",
     "joi": "^13.7.0",
-    "koa": "^2.3.0",
+    "koa": "^2.5.3",
     "koa-basic-auth": "^2.0.0",
     "koa-bodyparser": "^4.2.1",
     "koa-json": "^2.0.2",
