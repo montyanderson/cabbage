@@ -29,7 +29,7 @@
     "koa-route": "^3.2.0",
     "minimatch": "^3.0.4",
     "mz": "^2.7.0",
-    "postmark": "^1.6.1",
+    "postmark": "^2.2.6",
     "recursive-readdir": "^2.2.2",
     "sanitize-filename": "^1.6.1",
     "yup": "^0.26.6"
