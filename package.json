@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/montyanderson/cabbage#readme",
   "dependencies": {
-    "execa": "^1.0.0",
+    "execa": "^2.0.0",
     "ioredis": "^4.2.0",
     "joi": "^14.0.0",
     "koa": "^2.5.3",
