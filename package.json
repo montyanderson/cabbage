@@ -32,6 +32,6 @@
     "postmark": "^1.6.1",
     "recursive-readdir": "^2.2.2",
     "sanitize-filename": "^1.6.1",
-    "yup": "^0.26.6"
+    "yup": "^0.28.4"
   }
 }
