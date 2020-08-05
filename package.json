@@ -20,7 +20,7 @@
   "dependencies": {
     "execa": "^1.0.0",
     "ioredis": "^4.2.0",
-    "joi": "^14.0.0",
+    "joi": "^17.2.0",
     "koa": "^2.5.3",
     "koa-basic-auth": "^3.0.0",
     "koa-bodyparser": "^4.2.1",
